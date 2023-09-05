@@ -1,0 +1,90 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage{mathtools,amsthm,amssymb,amsmath}
+\usepackage{a4wide}
+
+\usepackage{fouriernc}
+\usepackage{hyperref}
+\usepackage[capitalize]{cleveref}
+
+
+\usepackage{minted}
+\setminted[python]{linenos=true}
+\setminted[python]{frame=lines}
+\setminted[R]{linenos=true}
+\setminted[R]{frame=lines}
+
+
+\usepackage{pythontex}
+\setpythontexfv[]{numbers=left, frame=lines, label=\fbox{Python Code}, xleftmargin=5mm,framesep=2mm,fontsize=\small} %,samepage}
+\restartpythontexsession{\thefigure}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\given}{\,\middle|\,}
+\newcommand{\Bern}[1]{\mathrm{Bern}(#1)}
+\newcommand{\Bin}[1]{\mathrm{Bin}(#1)}
+\newcommand{\Exp}[1]{\mathrm{Exp}(#1)}
+\newcommand{\FS}[1]{\mathrm{FS}(#1)}
+\newcommand{\Geo}[1]{\mathrm{Geo}(#1)}
+\newcommand{\Norm}[1]{\mathrm{Norm}(#1)}
+\newcommand{\Pois}[1]{\mathrm{Pois}(#1)}
+\newcommand{\Unif}[1]{\mathrm{Unif}(#1)}
+\renewcommand{\P}[1]{\,\mathsf{P}\left\{#1\right\}}
+\newcommand{\E}[1]{\,\mathsf{E}\left[#1\right]}
+\newcommand{\EE}[2]{\,\mathsf{E}_{#1}\left[#2\right]}
+\newcommand{\V}[1]{\,\mathsf{V}\left[#1\right]}
+\newcommand{\cov}[1]{\,\mathsf{Cov}\left[#1\right]}
+\renewcommand{\d}[1]{\,\textrm{d}#1}
+\newcommand{\1}[1]{\,I_{#1}} % indicator
+
+\author{Rowan Stel (s5380383), Christian Kloosterman (S5373387) and Dolf Bosch (s5165873)}
+\date{\today}
+\title{Statistical Inference, assignment 1\\
+  2020-2021
+  }
+
+\begin{document}
+
+\maketitle
+
+\section{Exercise 1.1}
+
+1. Determine which of the following sets can serve as one sample space (suppose that you do not necessarily care about both tosses):
+
+2. If one only cares about the outcomes of the second coin, which of the above sets can serve as the sample space?
+
+If one only cares about the outcome of the second coin, sample space c is sufficient since contains all outcomes of the cointoss. 
+
+3. If one only cares about whether two coins have the same outcome, which of the above sets can serve as the sample space?
+
+If one only cares about whether the two coin have the same outcome, sample space d since it contains an element for both the scenario of the coin tosses having different outcomes and having the same outcome. %ik weet niet of vraag 2 en 3 in genoeg detail gaan.
+
+4. Calculate the probability of  $\{H_1\}, \{H_1 H_2 or T_1T_2\}, \{H_1T_2 or T_1 H_2\}, \{T_1 H_2\}$
+
+The probability of  $\{H_1\}$ is simply equal to $\frac{1}{2}$ since the first coin toss is either heads or tails. The probability of $\{H_1 H_2 or T_1T_2\}$ is equal to the probability of $H_1, H_2$ plus the probability of $T_1, T_2$.
+
+
+5. Suppose you work with the sample space S = $\{H_1 H_2, H_1T_2, T_1 H_2, T_1T_2\}$ , can you propose a partition of S?
+
+
+\section{Exercise 1.2}
+X is the number of successes in twelve independent Bernoulli trials with probability $\theta$ of success on each trial, and Y is the number of independent Bernoulli trials needed to get three successes, again with probability $\theta$ of success on each trial ($\theta$ = $\frac{1}{2} $for the toss of a fair coin). What is the probability of X = 3 and Y = 12?
+\\ \\
+The calculation for the probability of $X=3$ is relatively straightforward. The probability of having exactly 3 successes in a row is $\theta^3$. Similarly the probability of having exactly $12-3 = 9$ failures in a row is $(1-\theta)^9$. Putting these two together we get that the probability of having three successes in a row and then nine failures is $\theta^3 \cdot(1-\theta)^9$. This however under counts the probability of $X=3$ since we do not care about order. This actually undercounts by a factor of $\binom{12}{3} = 220$ because there are $\binom{12}{3}$ ways to choose 3 items out of 12 without regard for order. Hence the probability of $X = 3$ equals $\binom{12}{3}\theta^3 \cdot (1 - \theta)^9$.
+
+Then for $Y=12$, we know that three successes and nine failures are required to have $Y = 12$. The probability of having nine failures and subsequently having three successes is $(1-\theta)^9 \cdot \theta^3$. This however undercounts significantly because there are many other ways to get $Y=12$ since we do not care about order. This actually undercounts by $\binom{11}{2} = 55$ because we know that the final Bernoulli trial has to be a success which makes it so that we need to calculate the ways we can choose two out of eleven when not caring about order. Hence the probability of having twelve Bernoulli trials before getting the third success is $P(Y = 12) = \binom{11}{2} \cdot (1-\theta)^9 \cdot \theta^3$
+
+
+\section{Exercise 1.3}
+
+1. Give the parameter space. What is its dimension?
+
+Since all elements that are sampled come from a Bernoulli distribution and the parameter of a Bernoulli distribution is restricted to $[0,1]$, we know that the parameter space is $[0, 1]^n$. The dimension of the parameter space is n since there are n different parameters. %ik weet niet zeker hoe correct dit is.
+
+2. 
+
+\end{document}
